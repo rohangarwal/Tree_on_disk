@@ -1,0 +1,63 @@
+public class StackList 
+{
+    Node sp;
+    StackList()
+    {
+        sp = null;
+    }
+    
+    public void push(int v)
+    {
+        Node temp = new Node(v);
+        if(sp==null)
+        {
+         sp=temp;   
+        }
+        else
+        {
+        temp.link = sp;
+        sp = temp;
+    }
+    }
+    
+    public int pop() throws StackEmptyException
+    {
+        if(isEmpty())
+            throw new StackEmptyException();
+        else
+        {
+            Node temp = sp;
+            sp = temp.link;
+            return temp.key;
+        }
+    }
+    
+    public void display()
+    {
+        Node temp = sp;
+        
+            while(temp != null)
+            {
+                //Node temp = sp;
+                System.out.println(temp.key);
+                temp = temp.link;
+            }
+        
+    }
+    
+    public boolean isEmpty()
+    {
+        return sp == null;        
+    }
+    
+}
+class Node
+{
+    int key;
+    Node link;
+    Node(int key)
+    {
+        this.key = key;
+        link = null;
+    }
+}
