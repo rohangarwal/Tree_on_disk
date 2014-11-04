@@ -1,0 +1,28 @@
+import java.util.Scanner;
+import java.io.*;
+public class Files
+{
+    public static void main(String[] args)
+    {
+        Tree t = new Tree();
+        int x;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the elements.");
+        
+        for(int i=0; i<6; i++)
+        {
+            x = in.nextInt();      
+            t.insert(x);
+        }
+        
+        t.display();
+       
+        try
+        {
+            t.writer();
+        }
+        catch(IOException e)
+        {
+        }
+    }
+}
