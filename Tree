@@ -1,0 +1,79 @@
+import java.io.*;
+public class Tree
+{
+    int root;
+    int ct = 0;
+    int arr[] = new int[20];
+    
+    public Tree()
+    {
+        root = 1;
+        
+        for(int i=0; i<20; i++)
+        {
+            arr[i] = -1;
+        }
+    }
+    
+    public void insert(int v) 
+    {
+        insertR(root,v); 
+    }
+    public void insertR(int root, int v) 
+    {
+        
+        if(arr[root] == -1)
+        {
+            arr[root] = v;
+        }
+        else if(arr[root] > v)
+        {
+            insertR(2*root,v);
+        }
+        else
+        {
+            insertR((2*root)+1,v);
+        }
+        ct++;    
+    }
+    public void display()
+    {
+        inorder(root);
+    }
+    public void inorder(int root)
+    {
+        if(arr[root] != -1)
+        {
+            inorder(2*root);
+            System.out.println(arr[root]);
+            inorder(2*root+1);
+        }
+    }
+    
+       public void writer() throws IOException
+   {
+       
+       PrintWriter file = new PrintWriter("now2.txt");    
+       StackList s = new StackList();
+           while(true)
+           {
+               while(arr[root] != -1)
+               {
+                   s.push(root);
+                   root = 2*root;
+                }
+                if(s.isEmpty())
+                    break;
+                    try
+                    {
+            root = s.pop();
+        }
+        catch(StackEmptyException e)
+        {
+        }
+            file.println(arr[root]);
+            root = 2*root+1;
+        }
+        file.close();
+    }
+}
