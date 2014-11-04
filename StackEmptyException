@@ -1,0 +1,7 @@
+public class StackEmptyException extends Exception
+{
+    public StackEmptyException()
+    {
+        System.out.println("Inside stack empty exception.");
+    }
+}
